@@ -65,25 +65,23 @@ public class Aplicacion extends Application{
 		return tiendaElectronica.getListaCliente();
 	}
 
-	public Cliente crearCliente(String nombre, String documento, String apellidos, String correo, String telefono,
-			String departamento, String ciudad) {
+	public Cliente crearCliente(String ciudad, String departamento, int documento, String nombres,String correo, String direccion, String fechaNacimiento) {
 		
 		Cliente cliente = null;
-		cliente = tiendaElectronica.crearCliente(nombre, documento, apellidos, correo, telefono, departamento, ciudad);
+		cliente = tiendaElectronica.crearCliente(ciudad,  departamento,  documento,  nombres, correo,  direccion,  fechaNacimiento);
 		
 		
 		return cliente;
 	}
 
-	public boolean eliminarCliente(String documento) {
+	public boolean eliminarCliente(int documento) {
 		
 		return tiendaElectronica.eliminarCliente(documento);
 	}
 
-	public boolean actializarCliente(String documentoActual, String nombre, String apellidos, String documento,
-			String ciudad, String departamento, String correo, String telefono) {
+	public boolean actializarCliente(int documentoActual, String ciudad, String departamento, int documento, String nombres,String correo, String direccion, String fechaNacimiento) {
 		
-		return tiendaElectronica.actualizarCliente(documentoActual, nombre, apellidos, documento, ciudad, departamento, correo, telefono);
+		return tiendaElectronica.actualizarCliente( documentoActual,  ciudad,  departamento,  documento,  nombres, correo,  direccion,  fechaNacimiento);
 	}
 	
 	//CRUD Producto

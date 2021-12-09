@@ -84,7 +84,7 @@ public class InstacompraController {
 	private TableView<Producto> tblListaProductos;
 
 	@FXML
-	private TextField txtTelefono;
+	private TextField txtFechaNacimiento;
 
 	@FXML
 	private TextField txtAdministracionRangoSede;
@@ -129,7 +129,7 @@ public class InstacompraController {
 	private TableColumn<Producto, Integer> colCodigo;
 
 	@FXML
-	private TextField txtApellidos;
+	private TextField txtDireccion;
 
 	@FXML
 	private TextField txtStock;
@@ -320,9 +320,9 @@ public class InstacompraController {
 		//datos tabla cliente
 		this.colDocumento.setCellValueFactory(new PropertyValueFactory<>("documento"));
 		this.colNombre1.setCellValueFactory(new PropertyValueFactory<>("nombres"));
-		this.colApellido.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
+		this.colApellido.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 		this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
-		this.colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+		this.colTelefono.setCellValueFactory(new PropertyValueFactory<>("fecchaNacimiento"));
 		this.colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
 		this.colDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento")); 
 
@@ -368,10 +368,10 @@ public class InstacompraController {
 
 		if (clienteSeleccionado != null) { 
 			txtNombres.setText(clienteSeleccionado.getNombres());
-			txtDocumento.setText(clienteSeleccionado.getDocumento());
-			txtApellidos.setText(clienteSeleccionado.getApellidos());
+			txtDocumento.setText(Integer.toString(clienteSeleccionado.getDocumento()));
+			txtDireccion.setText(clienteSeleccionado.getDireccion());
 			txtCorreo.setText(clienteSeleccionado.getCorreo());
-			txtTelefono.setText(clienteSeleccionado.getTelefono());
+			txtFechaNacimiento.setText(clienteSeleccionado.getFecchaNacimiento());
 			txtDepartamento.setText(clienteSeleccionado.getDepartamento());
 			txtCiudad.setText(clienteSeleccionado.getCiudad());
 		}
@@ -423,9 +423,9 @@ public class InstacompraController {
 
 		txtNombres.setPromptText("Ingrese el nombre(s)");
 		txtDocumento.setPromptText("Ingrese el documento");
-		txtApellidos.setPromptText("Ingrese el apellido(s)");
+		txtDireccion.setPromptText("Ingrese el apellido(s)");
 		txtCorreo.setPromptText("Ingrese el correo");
-		txtTelefono.setPromptText("Ingrese el telefono");
+		txtFechaNacimiento.setPromptText("Ingrese el telefono");
 		txtDepartamento.setPromptText("Ingrese el departamento");
 		txtCiudad.setPromptText("Ingrese la ciudad");
 
@@ -445,20 +445,32 @@ public class InstacompraController {
 	private void agregarCliente() {
 
 		//Capturar datos de interfaz
-		String nombre = txtNombres.getText();
-		String documento = txtDocumento.getText();
-		String apellidos = txtApellidos.getText();
-		String correo = txtCorreo.getText();
-		String telefono = txtTelefono.getText();
-		String departamento = txtDepartamento.getText();
-		String ciudad = txtCiudad.getText();
+		String nombre = "";
+		int documento = 0;
+		String direccion = "";
+		String correo = "";
+		String fechaNacimiento = "";
+		String departamento = "";
+		String ciudad = "";
+		
+		try { 
+			 nombre = txtNombres.getText();
+			 documento = Integer.parseInt(txtDocumento.getText());
+			 direccion = txtDireccion.getText();
+			 correo = txtCorreo.getText();
+			 fechaNacimiento = txtFechaNacimiento.getText();
+			 departamento = txtDepartamento.getText();
+			 ciudad = txtCiudad.getText();
+			} catch (NumberFormatException e) {
+				// ... } if (s != null) { ... }
+		}
 
 
-		if (datosValidos(nombre, documento, apellidos, correo, telefono, departamento, ciudad) == true) {
+		if (datosValidos( ciudad,  departamento,  documento,  nombre, correo,  direccion,  fechaNacimiento) == true) {
 
 			Cliente cliente = null;
 
-			cliente = aplicacion.crearCliente(nombre, documento, apellidos, correo, telefono, departamento, ciudad);
+			cliente = aplicacion.crearCliente( ciudad,  departamento,  documento,  nombre, correo,  direccion,  fechaNacimiento);
 
 			if (cliente != null) {
 
@@ -521,9 +533,9 @@ public class InstacompraController {
 
 		txtNombres.setText("");
 		txtDocumento.setText("");
-		txtApellidos.setText("");
+		txtDireccion.setText("");
 		txtCorreo.setText("");
-		txtTelefono.setText("");
+		txtFechaNacimiento.setText("");
 		txtDepartamento.setText("");
 		txtCiudad.setText("");
 	}
@@ -546,26 +558,25 @@ public class InstacompraController {
 	}
 
 	//datos validos para cliente
-	private boolean datosValidos(String nombre, String documento, String apellidos, String correo, String telefono,
-			String departamento, String ciudad) {
+	private boolean datosValidos(String ciudad, String departamento, int documento, String nombres,String correo, String direccion, String fechaNacimiento) {
 
 		String mensaje = "";
 
-		if (nombre == null || nombre.equals("")) {
+		if (nombres == null || nombres.equals("")) {
 			mensaje += "El nombre es invalido \n";
 		}
 
-		if (documento == null || documento.equals("")) {
+		if (documento == 0 ) {
 			mensaje += "El documento es invalido \n";
 		}
-		if (apellidos == null || apellidos.equals("")) {
-			mensaje += "El apellidos es invalido \n";
+		if (direccion == null || direccion.equals("")) {
+			mensaje += "La direccion es invalido \n";
 		}
 		if (correo == null || correo.equals("")) {
 			mensaje += "El correo es invalido \n";
 		}
-		if (telefono == null || telefono.equals("")) {
-			mensaje += "El telefono es invalido \n";
+		if (fechaNacimiento == null || fechaNacimiento.equals("")) {
+			mensaje += "La fechaNacimiento es invalido \n";
 		}
 		if (departamento == null || departamento.equals("")) {
 			mensaje += "El departamento es invalido \n";
@@ -697,10 +708,10 @@ public class InstacompraController {
 	private void actualizarCliente() {
 
 		String nombre = txtNombres.getText();
-		String documento = txtDocumento.getText();
-		String apellidos = txtApellidos.getText();
+		int  documento = Integer.parseInt(txtDocumento.getText());
+		String direccion = txtDireccion.getText();
 		String correo = txtCorreo.getText();
-		String telefono = txtTelefono.getText();
+		String fechaNacimiento = txtFechaNacimiento.getText();
 		String departamento = txtDepartamento.getText();
 		String ciudad = txtCiudad.getText();
 
@@ -708,9 +719,9 @@ public class InstacompraController {
 
 		if (clienteSeleccionado != null) {
 
-			if (datosValidos(nombre, documento, apellidos, correo, telefono, departamento, ciudad) == true) {
+			if (datosValidos( ciudad,  departamento,  documento,  nombre, correo,  direccion,  fechaNacimiento) == true) {
 
-				banderaClienteActuallizado = aplicacion.actializarCliente(clienteSeleccionado.getDocumento(), nombre, apellidos, documento, ciudad, departamento, correo, telefono);
+				banderaClienteActuallizado = aplicacion.actializarCliente(clienteSeleccionado.getDocumento(),  ciudad,  departamento,  documento,  nombre, correo,  direccion,  fechaNacimiento);
 
 				if (banderaClienteActuallizado == true) {
 

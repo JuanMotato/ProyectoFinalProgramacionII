@@ -83,8 +83,8 @@ public class TiendaElectronica {
 		 * Datos inicializados de Cliente
 		 * */
 
-		Cliente cliente1 = new Cliente ("Circacia", "Quindio", "1515151", "E Porvenir", "Juan","motato@correo", "19-01-2001");
-		Cliente cliente2 = new Cliente ("Calarca", "Quindio", "515815", "San Jose", "Jhon","Jhon@correo", "06-10-2000");
+		Cliente cliente1 = new Cliente ("Circacia", "Quindio", 1515151, "Juan","motato@correo", "E Porvenir", "19-01-2001");
+		Cliente cliente2 = new Cliente ("Calarca", "Quindio", 515815,"Jhon", "Jhon@correo", "San Jose", "06-10-2000");
 
 		getListaCliente().add(cliente1);
 		getListaCliente().add(cliente2);
@@ -97,8 +97,7 @@ public class TiendaElectronica {
 
 	}
 
-	public Cliente crearCliente(String nombre, String documento, String apellidos, String correo, String telefono,
-			String departamento, String ciudad) {
+	public Cliente crearCliente(String ciudad, String departamento, int documento, String nombres,String correo, String direccion, String fechaNacimiento) {
 		
 		Cliente cliente = null;
 		
@@ -110,11 +109,11 @@ public class TiendaElectronica {
 		
 			cliente = new Cliente();
 			
-			cliente.setNombres(nombre);
+			cliente.setNombres(nombres);
 			cliente.setDocumento(documento);
-			cliente.setApellidos(apellidos);
+			cliente.setDireccion(direccion);
 			cliente.setCorreo(correo);
-			cliente.setTelefono(telefono);
+			cliente.setFecchaNacimiento(fechaNacimiento);;
 			cliente.setDepartamento(departamento);
 			cliente.setCiudad(ciudad);
 			
@@ -158,11 +157,11 @@ public class TiendaElectronica {
 		
 	}
 
-	private Cliente obtenerCliente(String documento) {
+	private Cliente obtenerCliente(int documento) {
 		
 		for (Cliente cliente : listaCliente) {
 			
-			if (cliente.getDocumento().equals(documento)) {
+			if (cliente.getDocumento()==documento) {
 				return cliente;
 			}
 			
@@ -184,7 +183,7 @@ public class TiendaElectronica {
 		return null;
 	}
 
-	public  boolean eliminarCliente(String documento) {
+	public  boolean eliminarCliente(int documento) {
 		
 		Cliente cliente = null;
 		cliente = obtenerCliente(documento);
@@ -199,18 +198,18 @@ public class TiendaElectronica {
 	}
 
 	//metodo actuallizar cliente
-	public boolean actualizarCliente(String documentoActual, String nombre, String apellidos, String documento, String ciudad, String departamento, String correo, String telefono) {
+	public boolean actualizarCliente(int documentoActual, String ciudad, String departamento, int documento, String nombres,String correo, String direccion, String fechaNacimiento) {
 		
 		Cliente cliente = null;
 		cliente = obtenerCliente(documentoActual);
 		
-		if (cliente  != null && documentoActual.equals(documento) ) {
+		if (cliente  != null && documentoActual==documento ) {
 			
-			cliente.setNombres(nombre);
+			cliente.setNombres(nombres);
 			cliente.setDocumento(documento);
-			cliente.setApellidos(apellidos);
+			cliente.setDireccion(direccion);;
 			cliente.setCorreo(correo);
-			cliente.setTelefono(telefono);
+			cliente.setFecchaNacimiento(fechaNacimiento);
 			cliente.setDepartamento(departamento);
 			cliente.setCiudad(ciudad);
 			
