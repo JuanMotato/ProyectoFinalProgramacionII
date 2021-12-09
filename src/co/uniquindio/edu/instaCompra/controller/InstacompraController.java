@@ -477,14 +477,21 @@ public class InstacompraController {
 	private void agregarProducto() {
 
 		//Capturar datos de interfaz
-		int codigo = Integer.parseInt(txtCodigo.getText());
-		String sede = cbxSede.getValue();
-		Categoria categoria = (Categoria) cbxCategoriaProducto.getValue();
-		Double precio = Double.parseDouble(txtPrecio.getText());
-		int stock = Integer.parseInt(txtStock.getText());
-		String nombre = txtNombre.getText();
-
-
+		int codigo = 0;
+		String sede = "";
+		Categoria categoria = null ;
+		Double precio = 0.0;
+		int stock = 0;
+		String nombre = "";
+		try { 
+			 codigo = Integer.parseInt(txtCodigo.getText());
+			 sede = cbxSede.getValue();
+			 categoria = (Categoria) cbxCategoriaProducto.getValue();
+			 precio = Double.parseDouble(txtPrecio.getText());
+			 stock = Integer.parseInt(txtStock.getText());
+			 nombre = txtNombre.getText();
+			} catch (NumberFormatException e) { // ... } if (s != null) { ... }
+		}
 
 		if (datosValidosProducto(codigo, sede, categoria , precio, stock, nombre) == true) {
 
@@ -579,9 +586,10 @@ public class InstacompraController {
 
 	//datos validos para producto
 	private boolean datosValidosProducto(int codigo, String sede, Object categoria, Double precio,  int stock, String nombre) {
-
+		
 		String mensaje = "";
-
+		System.out.println(codigo);
+		
 		if (codigo == 0 ) {
 			mensaje += "El codigo es invalido \n";
 		}
@@ -705,6 +713,9 @@ public class InstacompraController {
 
 				if (banderaClienteActuallizado == true) {
 
+					tblListaClientes.getSelectionModel().select(null);;
+					limpiarCamposTexto();
+					nuevoCliente();
 					tblListaClientes.refresh();
 
 					mostrarMensaje("Notificacion cliente","Actualizacion","El cliente fue actualizado con exito", AlertType.WARNING);
@@ -740,7 +751,10 @@ public class InstacompraController {
 				banderaProductoActuallizado = aplicacion.actializarProducto(productoSeleccionado.getCodigo(), codigo, sede, categoria, precio, stock, nombre);
 
 				if (banderaProductoActuallizado == true) {
-
+					
+					limpiarCamposTextoPro();
+					nuevoProducto();
+					tblListaProductos.getSelectionModel().select(null);
 					tblListaProductos.refresh();
 
 					mostrarMensaje("Notificacion producto","Actualizacion","El producto fue actualizado con exito", AlertType.WARNING);
