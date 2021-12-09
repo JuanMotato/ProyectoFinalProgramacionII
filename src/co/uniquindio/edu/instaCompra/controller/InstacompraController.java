@@ -490,7 +490,8 @@ public class InstacompraController {
 			 precio = Double.parseDouble(txtPrecio.getText());
 			 stock = Integer.parseInt(txtStock.getText());
 			 nombre = txtNombre.getText();
-			} catch (NumberFormatException e) { // ... } if (s != null) { ... }
+			} catch (NumberFormatException e) {
+				// ... } if (s != null) { ... }
 		}
 
 		if (datosValidosProducto(codigo, sede, categoria , precio, stock, nombre) == true) {
