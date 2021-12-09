@@ -114,15 +114,22 @@ public class Aplicacion extends Application{
 
 	}
 
-//	public boolean eliminarProducto(String documento) {
-//		
-//		return tiendaElectronica.eliminarProducto(documento);
-//	}
-//
-//	public boolean actializarProducto(String documentoActual, String nombre, String apellidos, String documento,
-//			String ciudad, String departamento, String correo, String telefono) {
-//		
-//		return tiendaElectronica.actializarProducto(documentoActual, nombre, apellidos, documento, ciudad, departamento, correo, telefono);
-//	}
+	public Producto verificarExistenciaProducto(String idBuscar) {
+
+		boolean existeProducto = false;
+		Producto producto = null;
+
+		existeProducto= tiendaElectronica.validarProducto(idBuscar);
+
+		if(existeProducto==true){
+
+			producto=tiendaElectronica.buscarProducto(idBuscar);
+
+			return producto;
+		}else{
+			return producto;
+		}
+
+	}
 
 }

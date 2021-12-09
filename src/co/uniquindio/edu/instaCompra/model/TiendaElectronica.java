@@ -252,5 +252,49 @@ public class TiendaElectronica {
 			return false;
 		}
 	}
+	
+	public boolean validarProducto(String id) {
+
+		String idProduct;
+		boolean existe=false;
+
+		Producto productoAux;
+
+		for(int i=0; i<listProductos.size(); i++){
+
+			productoAux=listProductos.get(i);
+			idProduct=productoAux.getCodigo();
+
+			if(idProduct.equals(id)){
+
+				existe=true;
+
+				return existe;
+			}
+		}
+		return existe;
+	}
+	
+	public Producto buscarProducto(String idBuscar) {
+
+		Producto produAux = null;
+		String idProductoB = "";
+
+
+		for (int i=0; i<listProductos.size(); i++){
+
+			produAux=listProductos.get(i);
+
+			if(produAux!=null){
+
+				idProductoB=produAux.getCodigo();
+				if(idProductoB.equals(idBuscar)){
+					break;
+				}
+			}
+		}
+		return produAux;
+	}
+	
 
 }

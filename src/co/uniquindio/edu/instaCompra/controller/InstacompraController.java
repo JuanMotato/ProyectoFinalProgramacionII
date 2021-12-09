@@ -684,6 +684,25 @@ public class InstacompraController {
 			}
 		}
 
-	}		
+	}	
+	
+	private void buscarId() {
+		
+		 String idBuscar = txtAdministracionCodigoProducto.getText();
+		 //boolean existeId = false;
+		 
+		Producto producto = null;
+		
+		producto=aplicacion.verificarExistenciaProducto(idBuscar);
+		 
+		 if (producto!= null){
+			 
+			 listaProductosData.add(producto);
+			tableProductoInfo.setItems(listaProductosData);	 	 
+		 } 
+			 
+		 }
+	
+
 
 }
