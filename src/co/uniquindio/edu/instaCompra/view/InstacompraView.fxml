@@ -110,14 +110,14 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="608.0" prefWidth="1090.0">
                      <children>
-                        <SplitPane dividerPositions="0.5" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="432.0" prefWidth="907.0">
+                        <SplitPane dividerPositions="0.5" layoutX="6.0" layoutY="14.0" orientation="VERTICAL" prefHeight="559.0" prefWidth="915.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
                                     <Label layoutX="14.0" layoutY="14.0" text="Informacion de la sede" />
                                     <Label layoutX="13.0" layoutY="35.0" text="Sede" />
                                     <ComboBox fx:id="cbxVentaSede" layoutX="53.0" layoutY="31.0" prefHeight="25.0" prefWidth="178.0" promptText="Selecciona sede" />
-                                    <TableView layoutX="14.0" layoutY="84.0" prefHeight="117.0" prefWidth="880.0">
+                                    <TableView layoutX="12.0" layoutY="84.0" prefHeight="168.0" prefWidth="882.0">
                                       <columns>
                                         <TableColumn fx:id="colCodigoProductoVenta" prefWidth="220.0" text="Codigo" />
                                         <TableColumn fx:id="colNombreProductoVenta" prefWidth="220.0" text="Nombre" />
@@ -133,11 +133,11 @@
                                     <Label layoutX="14.0" layoutY="6.0" text="Informacion de la venta" />
                                     <Label layoutX="14.0" layoutY="42.0" text="Codigo producto" />
                                     <TextField fx:id="txtVentaProducto" layoutX="108.0" layoutY="38.0" prefHeight="25.0" prefWidth="151.0" />
-                                    <Label layoutX="616.0" layoutY="19.0" text="Cliente" />
-                                    <ComboBox fx:id="cbxCliente" layoutX="680.0" layoutY="15.0" prefWidth="200.0" promptText="Selecciona un cliente" />
-                                    <Button fx:id="btnRealizarVenta" layoutX="680.0" layoutY="59.0" mnemonicParsing="false" onAction="#realizarVentaEvent" text="Realizar venta" />
-                                    <Label layoutX="14.0" layoutY="72.0" text="Lista de ventas" />
-                                    <TableView fx:id="tblVentas" layoutX="16.0" layoutY="92.0" prefHeight="86.0" prefWidth="880.0">
+                                    <Label layoutX="617.0" layoutY="30.0" text="Cliente" />
+                                    <ComboBox fx:id="cbxCliente" layoutX="681.0" layoutY="26.0" prefWidth="200.0" promptText="Selecciona un cliente" />
+                                    <Button fx:id="btnRealizarVenta" layoutX="680.0" layoutY="68.0" mnemonicParsing="false" onAction="#realizarVentaEvent" text="Realizar venta" />
+                                    <Label layoutX="14.0" layoutY="85.0" text="Lista de ventas" />
+                                    <TableView fx:id="tblVentas" layoutX="14.0" layoutY="104.0" prefHeight="125.0" prefWidth="886.0">
                                       <columns>
                                         <TableColumn fx:id="colCodigoVenta" prefWidth="176.0" text="Codigo venta" />
                                           <TableColumn fx:id="colCantidadVenta" prefWidth="176.0" text="Cantidad" />
@@ -146,8 +146,8 @@
                                           <TableColumn fx:id="colSedeVenta" prefWidth="176.0" text="Sede" />
                                       </columns>
                                     </TableView>
-                                    <Button fx:id="btnActualizarVenta" layoutX="780.0" layoutY="59.0" mnemonicParsing="false" onAction="#actualizarVentaEvent" text="Actualizar venta" />
-                                    <Button fx:id="btnEliminarVenta" layoutX="409.0" layoutY="186.0" mnemonicParsing="false" onAction="#eliminarVentaEvent" text="Eliminar venta" />
+                                    <Button fx:id="btnActualizarVenta" layoutX="780.0" layoutY="68.0" mnemonicParsing="false" onAction="#actualizarVentaEvent" text="Actualizar venta" />
+                                    <Button fx:id="btnEliminarVenta" layoutX="411.0" layoutY="236.0" mnemonicParsing="false" onAction="#eliminarVentaEvent" text="Eliminar venta" />
                                     <Label layoutX="281.0" layoutY="42.0" text="Cantidad" />
                                     <TextField fx:id="txtCantidadProducto" layoutX="335.0" layoutY="38.0" prefHeight="25.0" prefWidth="151.0" />
                                  </children>
@@ -161,41 +161,41 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="14.0" layoutY="261.0" prefHeight="86.0" prefWidth="450.0">
+                        <TableView layoutX="15.0" layoutY="362.0" prefHeight="165.0" prefWidth="484.0">
                           <columns>
                             <TableColumn fx:id="tblProductoMasVendido" prefWidth="100.0" text="Producto" />
                             <TableColumn prefWidth="100.0" text="Codigo" />
                               <TableColumn prefWidth="100.0" text="Comprador" />
                           </columns>
                         </TableView>
-                        <Label layoutX="14.0" layoutY="202.0" text="Lista productos mas vendidos " />
-                        <Label layoutX="14.0" layoutY="231.0" text="Rango producto" />
-                        <TextField fx:id="txtAdministracionRangoProducto" layoutX="110.0" layoutY="227.0" prefHeight="25.0" prefWidth="200.0" />
+                        <Label layoutX="15.0" layoutY="303.0" text="Lista productos mas vendidos " />
+                        <Label layoutX="15.0" layoutY="332.0" text="Rango producto" />
+                        <TextField fx:id="txtAdministracionRangoProducto" layoutX="111.0" layoutY="328.0" prefHeight="25.0" prefWidth="200.0" />
                         <TextField fx:id="txtAdministracionRangoSede" layoutX="714.0" layoutY="64.0" prefHeight="25.0" prefWidth="200.0" />
                         <Label layoutX="618.0" layoutY="68.0" text="Rango sede" />
                         <Label layoutX="618.0" layoutY="39.0" text="Lista clientes con mayores compras" />
-                        <TableView layoutX="618.0" layoutY="98.0" prefHeight="110.0" prefWidth="300.0">
+                        <TableView layoutX="618.0" layoutY="98.0" prefHeight="161.0" prefWidth="303.0">
                            <columns>
                               <TableColumn fx:id="tblClientesMayoresCompras" prefWidth="100.0" text="Cliente" />
                               <TableColumn prefWidth="100.0" text="Identificacion" />
                               <TableColumn prefWidth="100.0" text="Productos" />
                            </columns>
                         </TableView>
-                        <TextField fx:id="txtAdministracionCodigoProducto" layoutX="110.0" layoutY="39.0" prefHeight="25.0" prefWidth="200.0" />
-                        <Label layoutX="15.0" layoutY="43.0" text="Codigo producto" />
+                        <TextField fx:id="txtAdministracionCodigoProducto" layoutX="108.0" layoutY="56.0" prefHeight="25.0" prefWidth="200.0" />
+                        <Label layoutX="13.0" layoutY="60.0" text="Codigo producto" />
                         <Label layoutX="15.0" layoutY="14.0" text="Busqueda de producto" />
-                        <Label layoutX="618.0" layoutY="249.0" text="Sede" />
-                        <Label layoutX="618.0" layoutY="220.0" text="Lista de sedes y productos" />
-                        <TableView layoutX="619.0" layoutY="274.0" prefHeight="148.0" prefWidth="300.0">
+                        <Label layoutX="618.0" layoutY="332.0" text="Sede" />
+                        <Label layoutX="618.0" layoutY="303.0" text="Lista de sedes y productos" />
+                        <TableView layoutX="618.0" layoutY="362.0" prefHeight="165.0" prefWidth="300.0">
                            <columns>
                               <TableColumn fx:id="tblSedesProductosDisponibles" prefWidth="100.0" text="Sede" />
                               <TableColumn prefWidth="100.0" text="Producto" />
                               <TableColumn prefWidth="100.0" text="Cantidad disponible" />
                            </columns>
                         </TableView>
-                        <TextField fx:id="txtAdministracionRangoSede" layoutX="657.0" layoutY="245.0" prefHeight="25.0" prefWidth="203.0" />
-                        <Button fx:id="btnBuscar" layoutX="320.0" layoutY="39.0" mnemonicParsing="false" onAction="#buscarProductoEvent" text="Buscar" />
-                        <TableView fx:id="tblBusquedaProducto" layoutX="15.0" layoutY="74.0" prefHeight="105.0" prefWidth="487.0">
+                        <TextField fx:id="txtAdministracionRangoSede" layoutX="657.0" layoutY="328.0" prefHeight="25.0" prefWidth="203.0" />
+                        <Button fx:id="btnBuscar" layoutX="318.0" layoutY="56.0" mnemonicParsing="false" onAction="#buscarProductoEvent" text="Buscar" />
+                        <TableView fx:id="tblBusquedaProducto" layoutX="13.0" layoutY="98.0" prefHeight="162.0" prefWidth="488.0">
                           <columns>
                             <TableColumn fx:id="colCodigoProductoAdministracion" prefWidth="81.0" text="Codigo" />
                             <TableColumn fx:id="colNombreProductoAdministracion" prefWidth="81.0" text="Nombre" />
