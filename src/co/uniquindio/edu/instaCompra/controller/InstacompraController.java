@@ -27,9 +27,9 @@ public class InstacompraController {
 
 	Aplicacion aplicacion;
 	ObservableList<Cliente> listaClientesData = FXCollections.observableArrayList();
-	
+
 	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
-	
+
 	ObservableList<Producto> listaProductosDataAdministracion = FXCollections.observableArrayList();
 
 	Cliente clienteSeleccionado;
@@ -40,12 +40,12 @@ public class InstacompraController {
 
 	@FXML
 	private TableColumn<Cliente, String> colNombre1;
-	
+
 	@FXML
 	private TableColumn<Producto, String> colNombre;
-	
+
 	@FXML
-    private ComboBox<Categoria> cbxCategoriaProducto;
+	private ComboBox<Categoria> cbxCategoriaProducto;
 
 	@FXML
 	private TableColumn<Producto, Categoria> colCategoria;
@@ -157,22 +157,22 @@ public class InstacompraController {
 
 	@FXML
 	private TableColumn<Producto, String> tblSedesProductosDisponibles;
-	
+
 	@FXML
-    private TableColumn<Producto, Integer> colCodigoProductoAdministracion;
-	
+	private TableColumn<Producto, Integer> colCodigoProductoAdministracion;
+
 	@FXML
-    private TableColumn<Producto, Categoria> colCategoriaProductoAdministracion;
-	
+	private TableColumn<Producto, Categoria> colCategoriaProductoAdministracion;
+
 	@FXML
 	private TableColumn<Producto, String> colNombreProductoAdministracion;
-	 
+
 	@FXML
 	private TableColumn<Producto, Integer> colStockProductoAdministracion;
-	
+
 	@FXML
 	private TableColumn<Producto, String> colSedeProductoAdministracion;
-	
+
 	@FXML
 	private TableColumn<Producto, Double> colPrecioProductoAdministracion;
 
@@ -181,9 +181,9 @@ public class InstacompraController {
 
 	@FXML
 	private Button btnEliminarProducto;
-	
+
 	@FXML
-    private Button btnNuevoProducto;
+	private Button btnNuevoProducto;
 
 	@FXML
 	private TableColumn<Cliente, String> colCiudad;
@@ -205,6 +205,36 @@ public class InstacompraController {
 
 	@FXML
 	private TableColumn<Producto, String> colSede;
+	
+	@FXML
+    private TableColumn<?, ?> colCodigoProductoVenta;
+	
+	@FXML
+    private TableColumn<?, ?> colNombreProductoVenta;
+
+	@FXML
+	private TableColumn<?, ?> colStockProductoVenta;
+	
+	@FXML
+	private TableColumn<?, ?> colPrecioProductoVenta;
+	
+	@FXML
+	private TextField txtCantidadProducto;
+	
+	@FXML
+	private TableColumn<?, ?> colTotalVenta;
+
+	@FXML
+	private TableColumn<?, ?> colCodigoVenta;
+
+	@FXML
+	private TableColumn<?, ?> colCantidadVenta;
+
+	@FXML
+	private TableColumn<?, ?> colPrecioUnitarioVenta;
+
+	@FXML
+	private TableColumn<?, ?> colSedeVenta;
 
 	public InstacompraController() {
 
@@ -248,10 +278,10 @@ public class InstacompraController {
 	void actualizarProductoEvent(ActionEvent event) {
 		actualizarProducto();
 	}
-	
+
 	@FXML
-    void nuevoProductoEvent(ActionEvent event) {
-	
+	void nuevoProductoEvent(ActionEvent event) {
+
 		nuevoProducto();
 	}
 
@@ -259,9 +289,15 @@ public class InstacompraController {
 	void eliminarProductoEvent(ActionEvent event) {     
 
 		eliminarProducto();
-		
+
 	}
 
+	@FXML
+	void buscarProductoEvent(ActionEvent event) {
+
+		buscarCodigoProducto();
+
+	}
 
 	@FXML
 	void realizarVentaEvent(ActionEvent event) {
@@ -269,9 +305,12 @@ public class InstacompraController {
 	}
 
 	@FXML
-	void buscarProductoEvent(ActionEvent event) {
-		
-		buscarCodigoProducto();
+	void actualizarVentaEvent(ActionEvent event) {
+
+	}
+
+	@FXML
+	void eliminarVentaEvent(ActionEvent event) {
 
 	}
 
@@ -293,8 +332,8 @@ public class InstacompraController {
 			mostrarInformacioncliente(clienteSeleccionado);  
 
 		});
-		
-		
+
+
 		//datos tabla producto
 		this.colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		this.colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -302,18 +341,18 @@ public class InstacompraController {
 		this.colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		this.colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 		this.colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
-		
+
 
 		tblListaProductos.getSelectionModel ().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 
 			productoSeleccionado = newSelection;
 			mostrarInformacionProducto(productoSeleccionado); 
-		
+
 		});
-		
+
 		cbxCategoriaProducto.getItems().addAll(Categoria.TECNOLOGIA, Categoria.MOVIL, Categoria.TECNOLOGIA_COMPUTACIONAL, Categoria.MUSICA, Categoria.HOGAR, Categoria.EMRESARIALES);
 		cbxSede.getItems().addAll("Armenia","Bogota","Pereira");
-		
+
 		//datos tabla producto
 		this.colCodigoProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		this.colNombreProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -338,7 +377,7 @@ public class InstacompraController {
 		}
 
 	}
-	
+
 	private void mostrarInformacionProducto(Producto productoSeleccionado) {
 
 		if (productoSeleccionado != null) { 
@@ -348,7 +387,7 @@ public class InstacompraController {
 			txtStock.setText(Integer.toString(productoSeleccionado.getStock()));
 			cbxSede.setValue(productoSeleccionado.getSede());
 			cbxCategoriaProducto.setValue(productoSeleccionado.getCategoria());
-			
+
 		}
 
 	}
@@ -360,7 +399,7 @@ public class InstacompraController {
 		this.aplicacion = aplicacion;
 		tblListaClientes.getItems().clear();
 		tblListaClientes.setItems(getListaClientesData());
-		
+
 		tblListaProductos.getItems().clear();
 		tblListaProductos.setItems(getListaProductosData());
 
@@ -372,7 +411,7 @@ public class InstacompraController {
 		listaClientesData.addAll(aplicacion.obtenerClientes());
 		return listaClientesData;
 	}
-	
+
 	public ObservableList<Producto> getListaProductosData(){
 
 		listaProductosData.addAll(aplicacion.obtenerProductos());
@@ -391,14 +430,14 @@ public class InstacompraController {
 		txtCiudad.setPromptText("Ingrese la ciudad");
 
 	}
-	
+
 	private void nuevoProducto() {
 
 		txtCodigo.setPromptText("Ingrese el nuevo codigo"); 
 		txtNombre.setPromptText("Ingrese el nuevo nombre");
 		txtPrecio.setPromptText("0.0");
 		txtStock.setPromptText("0");
-		
+
 
 	}
 
@@ -432,9 +471,9 @@ public class InstacompraController {
 			}
 
 		}
-		
+
 	}
-	
+
 	private void agregarProducto() {
 
 		//Capturar datos de interfaz
@@ -444,7 +483,7 @@ public class InstacompraController {
 		Double precio = Double.parseDouble(txtPrecio.getText());
 		int stock = Integer.parseInt(txtStock.getText());
 		String nombre = txtNombre.getText();
-		
+
 
 
 		if (datosValidosProducto(codigo, sede, categoria , precio, stock, nombre) == true) {
@@ -480,7 +519,7 @@ public class InstacompraController {
 		txtDepartamento.setText("");
 		txtCiudad.setText("");
 	}
-	
+
 	private void limpiarCamposTextoPro() {
 
 		txtCodigo.setText(""); 
@@ -536,8 +575,8 @@ public class InstacompraController {
 		}
 
 	}
-	
-	
+
+
 	//datos validos para producto
 	private boolean datosValidosProducto(int codigo, String sede, Object categoria, Double precio,  int stock, String nombre) {
 
@@ -562,7 +601,7 @@ public class InstacompraController {
 		if (nombre == null || nombre.equals("")) {
 			mensaje += "El nombre es invalido \n";
 		}
-	
+
 		if (mensaje.equals("")) {
 			return true;
 		}else {
@@ -599,12 +638,12 @@ public class InstacompraController {
 		}
 
 	}
-	
-	
+
+
 	private void eliminarProducto() {
-		
+
 		boolean banderaProductoEliminado = false;
-		
+
 		if (mostrarMensajeConfirmacion("¿Estas seguro de eliminar el producto?") == true) {
 
 			if (productoSeleccionado != null) {
@@ -661,13 +700,13 @@ public class InstacompraController {
 		if (clienteSeleccionado != null) {
 
 			if (datosValidos(nombre, documento, apellidos, correo, telefono, departamento, ciudad) == true) {
-				
+
 				banderaClienteActuallizado = aplicacion.actializarCliente(clienteSeleccionado.getDocumento(), nombre, apellidos, documento, ciudad, departamento, correo, telefono);
 
 				if (banderaClienteActuallizado == true) {
 
 					tblListaClientes.refresh();
-					
+
 					mostrarMensaje("Notificacion cliente","Actualizacion","El cliente fue actualizado con exito", AlertType.WARNING);
 
 				}else {
@@ -681,10 +720,10 @@ public class InstacompraController {
 		}
 
 	}
-	
-	
+
+
 	private void actualizarProducto() {
-		
+
 		int codigo = Integer.parseInt(txtCodigo.getText());
 		String sede = cbxSede.getValue();
 		Categoria categoria = (Categoria) cbxCategoriaProducto.getValue();
@@ -697,13 +736,13 @@ public class InstacompraController {
 		if (productoSeleccionado != null) {
 
 			if (datosValidosProducto(codigo, sede, categoria, precio, stock, nombre) == true) {
-				
+
 				banderaProductoActuallizado = aplicacion.actializarProducto(productoSeleccionado.getCodigo(), codigo, sede, categoria, precio, stock, nombre);
 
 				if (banderaProductoActuallizado == true) {
 
 					tblListaProductos.refresh();
-					
+
 					mostrarMensaje("Notificacion producto","Actualizacion","El producto fue actualizado con exito", AlertType.WARNING);
 
 				}else {
@@ -717,24 +756,24 @@ public class InstacompraController {
 		}
 
 	}	
-	
+
 	private void buscarCodigoProducto() {
-		
+
 		tblBusquedaProducto.getItems().clear();
 		int codigoBuscar = Integer.parseInt(txtAdministracionCodigoProducto.getText());
-		 
+
 		Producto producto = null;
-		
+
 		producto=aplicacion.verificarExistenciaProducto(codigoBuscar);
-		 
-		 if (producto!= null){
-			 
-			 listaProductosDataAdministracion.add(producto);
+
+		if (producto!= null){
+
+			listaProductosDataAdministracion.add(producto);
 			tblBusquedaProducto.setItems(listaProductosDataAdministracion);	 	 
-		 } 
-			 
-		 }
-	
+		} 
+
+	}
+
 
 
 }
