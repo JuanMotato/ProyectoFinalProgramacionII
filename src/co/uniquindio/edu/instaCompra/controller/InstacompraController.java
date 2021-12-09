@@ -154,7 +154,28 @@ public class InstacompraController {
 	private TableColumn<Cliente, String> colApellido;
 
 	@FXML
-	private TableColumn<?, ?> tblSedesProductosDisponibles;
+	private TableColumn<Producto, String> tblSedesProductosDisponibles;
+	
+	@FXML
+    private TableColumn<Producto, Integer> colCodigoProductoAdministracion;
+	
+	@FXML
+    private TableColumn<Producto, Categoria> colCategoriaProductoAdministracion;
+	
+	@FXML
+	private TableColumn<Producto, String> colNombreProductoAdministracion;
+	 
+	@FXML
+	private TableColumn<Producto, Integer> colStockProductoAdministracion;
+	
+	@FXML
+	private TableColumn<Producto, String> colSedeProductoAdministracion;
+	
+	@FXML
+	private TableColumn<Producto, Double> colPrecioProductoAdministracion;
+
+	@FXML
+	private TableView<Producto> tblBusquedaProducto;
 
 	@FXML
 	private Button btnEliminarProducto;
@@ -247,6 +268,8 @@ public class InstacompraController {
 
 	@FXML
 	void buscarProductoEvent(ActionEvent event) {
+		
+		buscarCodigoProducto();
 
 	}
 
@@ -686,12 +709,9 @@ public class InstacompraController {
 
 	}	
 	
-	private void buscarId() {
+	private void buscarCodigoProducto() {
 		
-		int codigoBuscar = Integer.parseInt(txtCodigo.getText());
-		
-		 String idBuscar = txtAdministracionCodigoProducto.getText();
-		 //boolean existeId = false;
+		int codigoBuscar = Integer.parseInt(txtAdministracionCodigoProducto.getText());
 		 
 		Producto producto = null;
 		
@@ -700,7 +720,7 @@ public class InstacompraController {
 		 if (producto!= null){
 			 
 			 listaProductosData.add(producto);
-			tableProductoInfo.setItems(listaProductosData);	 	 
+			tblBusquedaProducto.setItems(listaProductosData);	 	 
 		 } 
 			 
 		 }
