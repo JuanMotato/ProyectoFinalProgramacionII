@@ -158,6 +158,9 @@ public class InstacompraController {
 
 	@FXML
 	private Button btnEliminarProducto;
+	
+	@FXML
+    private Button btnNuevoProducto;
 
 	@FXML
 	private TableColumn<Cliente, String> colCiudad;
@@ -220,7 +223,13 @@ public class InstacompraController {
 
 	@FXML
 	void actualizarProductoEvent(ActionEvent event) {
-
+		actualizarProducto();
+	}
+	
+	@FXML
+    void nuevoProductoEvent(ActionEvent event) {
+	
+		nuevoProducto();
 	}
 
 	@FXML
@@ -353,13 +362,11 @@ public class InstacompraController {
 	
 	private void nuevoProducto() {
 
-		txtNombres.setText("Ingrese el nombre(s)");
-		txtDocumento.setText("Ingrese el documento");
-		txtApellidos.setText("Ingrese el apellido(s)");
-		txtCorreo.setText("Ingrese el correo");
-		txtTelefono.setText("Ingrese el telefono");
-		txtDepartamento.setText("Ingrese el departamento");
-		txtCiudad.setText("Ingrese la ciudad");
+		txtCodigo.setText("Ingrese el nuevo codigo"); 
+		txtNombre.setText("Ingrese el nuevo nombre");
+		txtPrecio.setText("0");
+		txtStock.setText("0");
+		
 
 	}
 
@@ -417,7 +424,7 @@ public class InstacompraController {
 			if (producto != null) {
 
 				listaProductosData.addAll(producto);
-				limpiarCamposTexto();
+				limpiarCamposTextoPro();
 				mostrarMensaje("Notificacion producto", "Producto registrado", "El producto se ha registrado con exito", AlertType.INFORMATION);
 
 			}else {
@@ -444,13 +451,10 @@ public class InstacompraController {
 	
 	private void limpiarCamposTextoPro() {
 
-		txtNombres.setText("");
-		txtDocumento.setText("");
-		txtApellidos.setText("");
-		txtCorreo.setText("");
-		txtTelefono.setText("");
-		txtDepartamento.setText("");
-		txtCiudad.setText("");
+		txtCodigo.setText(""); 
+		txtNombre.setText("");
+		txtPrecio.setText("");
+		txtStock.setText("");
 	}
 
 	private void mostrarMensaje(String titulo, String header, String contenido, AlertType alertType) {
@@ -511,13 +515,13 @@ public class InstacompraController {
 			mensaje += "El codigo es invalido \n";
 		}
 
-//		if (sede == null || sede.equals("")) {
-//			mensaje += "la sede es invalido \n";
-//		}
-		if (categoria == null || categoria.equals("")) {
+		if (sede == null || sede.equals("")) {
+			mensaje += "la sede es invalido \n";
+		}
+		if (categoria == null) {
 			mensaje += "la categoria es invalido \n";
 		}
-		if (precio == null || precio.equals("")) {
+		if (precio == 0.0 || precio == null) {
 			mensaje += "El precio es invalido \n";
 		}
 		if (stock == 0) {
@@ -635,7 +639,7 @@ public class InstacompraController {
 					mostrarMensaje("Notificacion cliente","Actualizacion","El cliente fue actualizado con exito", AlertType.WARNING);
 
 				}else {
-					mostrarMensaje("Notificacion cliente","Actualizacion","El NO cliente fue actualizado con exito", AlertType.WARNING);
+					mostrarMensaje("Notificacion cliente","Actualizacion","El Ya esta registrado", AlertType.WARNING);
 				}
 			}
 
@@ -645,52 +649,41 @@ public class InstacompraController {
 		}
 
 	}
+	
+	
+	private void actualizarProducto() {
+		
+		int codigo = Integer.parseInt(txtCodigo.getText());
+		String sede = cbxSede.getValue();
+		Categoria categoria = (Categoria) cbxCategoriaProducto.getValue();
+		Double precio = Double.parseDouble(txtPrecio.getText());
+		int stock = Integer.parseInt(txtStock.getText());
+		String nombre = txtNombre.getText();
 
+		boolean banderaProductoActuallizado = false;
 
-	//	assert tblListaVenta != null : "fx:id=\"tblListaVenta\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colNombre != null : "fx:id=\"colNombre\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colCategoria != null : "fx:id=\"colCategoria\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtDocumento != null : "fx:id=\"txtDocumento\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtPrecio != null : "fx:id=\"txtPrecio\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colStock != null : "fx:id=\"colStock\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblProductoMasVendido != null : "fx:id=\"tblProductoMasVendido\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtNombre != null : "fx:id=\"txtNombre\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colDocumento != null : "fx:id=\"colDocumento\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblClientesMayoresCompras != null : "fx:id=\"tblClientesMayoresCompras\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnAgregarProducto != null : "fx:id=\"btnAgregarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colPrecio != null : "fx:id=\"colPrecio\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colCorreo != null : "fx:id=\"colCorreo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblListaProductos != null : "fx:id=\"tblListaProductos\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtTelefono != null : "fx:id=\"txtTelefono\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblSede != null : "fx:id=\"tblSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtAdministracionRangoSede != null : "fx:id=\"txtAdministracionRangoSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert cbxVentaSede != null : "fx:id=\"cbxVentaSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtAdministracionRangoProducto != null : "fx:id=\"txtAdministracionRangoProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtNombres != null : "fx:id=\"txtNombres\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnAgregarCliente != null : "fx:id=\"btnAgregarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnActualizarProducto != null : "fx:id=\"btnActualizarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblVentas != null : "fx:id=\"tblVentas\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblListaClientes != null : "fx:id=\"tblListaClientes\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnRealizarVenta != null : "fx:id=\"btnRealizarVenta\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtCategoria != null : "fx:id=\"txtCategoria\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colCodigo != null : "fx:id=\"colCodigo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtApellidos != null : "fx:id=\"txtApellidos\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtStock != null : "fx:id=\"txtStock\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnActualizarCliente != null : "fx:id=\"btnActualizarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert cbxSede != null : "fx:id=\"cbxSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtCodigo != null : "fx:id=\"txtCodigo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert cbxCliente != null : "fx:id=\"cbxCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtCorreo != null : "fx:id=\"txtCorreo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtVentaProducto != null : "fx:id=\"txtVentaProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colApellido != null : "fx:id=\"colApellido\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert tblSedesProductosDisponibles != null : "fx:id=\"tblSedesProductosDisponibles\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnEliminarProducto != null : "fx:id=\"btnEliminarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnEliminarCliente != null : "fx:id=\"btnEliminarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert txtAdministracionCodigoProducto != null : "fx:id=\"txtAdministracionCodigoProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colTelefono != null : "fx:id=\"colTelefono\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert btnBuscar != null : "fx:id=\"btnBuscar\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-	//    assert colSede != null : "fx:id=\"colSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+		if (productoSeleccionado != null) {
 
+			if (datosValidosProducto(codigo, sede, categoria, precio, stock, nombre) == true) {
+				
+				banderaProductoActuallizado = aplicacion.actializarProducto(productoSeleccionado.getCodigo(), codigo, sede, categoria, precio, stock, nombre);
 
+				if (banderaProductoActuallizado == true) {
+
+					tblListaProductos.refresh();
+					
+					mostrarMensaje("Notificacion producto","Actualizacion","El producto fue actualizado con exito", AlertType.WARNING);
+
+				}else {
+					mostrarMensaje("Notificacion producto","Actualizacion","El producto NO fue actualizado con exito", AlertType.WARNING);
+				}
+			}
+
+			else {
+				mostrarMensaje("Notificacion producto", "Producto NO registrado", "El producto no se puede eliminar", AlertType.ERROR);
+			}
+		}
+
+	}		
 
 }

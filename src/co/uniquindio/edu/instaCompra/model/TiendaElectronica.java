@@ -204,7 +204,7 @@ public class TiendaElectronica {
 		Cliente cliente = null;
 		cliente = obtenerCliente(documentoActual);
 		
-		if (cliente  != null) {
+		if (cliente  != null && documentoActual.equals(documento) ) {
 			
 			cliente.setNombres(nombre);
 			cliente.setDocumento(documento);
@@ -227,6 +227,26 @@ public class TiendaElectronica {
 		
 		if (producto  != null) {
 			getListProductos().remove(producto);
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean actualizarProducto(int codigoActual, int codigo, String sede, Categoria categoria, Double precio, int stock, String nombre) {
+
+		Producto producto = null;
+		producto = obtenerProducto(codigoActual);
+		
+		if (producto  != null && codigoActual == codigo) {
+
+			producto.setCodigo(codigo);
+			producto.setSede(sede);
+			producto.setCategoria(categoria);
+			producto.setPrecio(precio);
+			producto.setStock(stock);
+			producto.setNombre(nombre);
+
 			return true;
 		}else {
 			return false;

@@ -107,6 +107,13 @@ public class Aplicacion extends Application{
 		
 	}
 
+	public boolean actializarProducto(int codigoActual, int codigo, String sede, Categoria categoria, Double precio, int stock,
+			String nombre) {
+		
+		return tiendaElectronica.actualizarProducto(codigoActual,codigo, sede, categoria, precio, stock, nombre);
+
+	}
+
 //	public boolean eliminarProducto(String documento) {
 //		
 //		return tiendaElectronica.eliminarProducto(documento);
