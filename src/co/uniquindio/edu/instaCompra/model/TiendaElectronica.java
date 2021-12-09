@@ -140,7 +140,12 @@ public class TiendaElectronica {
 		
 			producto = new Producto();
 			
-			//producto.setNombres(nombre);
+			producto.setCodigo(codigo);
+			producto.setSede(sede);
+			producto.setCategoria(categoria);
+			producto.setPrecio(precio);
+			producto.setStock(stock);
+			producto.setNombre(nombre);
 
 			
 			getListProductos().add(producto);
@@ -209,6 +214,19 @@ public class TiendaElectronica {
 			cliente.setDepartamento(departamento);
 			cliente.setCiudad(ciudad);
 			
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean eliminarProducto(int codigo) {
+		
+		Producto producto = null;
+		producto = obtenerProducto(codigo);
+		
+		if (producto  != null) {
+			getListProductos().remove(producto);
 			return true;
 		}else {
 			return false;

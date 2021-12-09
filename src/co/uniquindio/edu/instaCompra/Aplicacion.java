@@ -101,6 +101,12 @@ public class Aplicacion extends Application{
 		return producto;
 	}
 
+	public boolean eliminarProducto(int codigo) {
+		
+		return tiendaElectronica.eliminarProducto(codigo);
+		
+	}
+
 //	public boolean eliminarProducto(String documento) {
 //		
 //		return tiendaElectronica.eliminarProducto(documento);

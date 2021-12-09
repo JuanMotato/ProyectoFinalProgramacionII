@@ -19,6 +19,8 @@ public class Producto {
 		this.nombre = nombre;
 	}
 	
+	
+	
 	public Producto() {
 		
 	}
