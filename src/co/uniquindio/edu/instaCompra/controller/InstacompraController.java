@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import co.uniquindio.edu.instaCompra.Aplicacion;
 import co.uniquindio.edu.instaCompra.model.Cliente;
+import co.uniquindio.edu.instaCompra.model.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,8 @@ public class InstacompraController {
 
 	Aplicacion aplicacion;
 	ObservableList<Cliente> listaClientesData = FXCollections.observableArrayList();
+	
+	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
 
 	Cliente clienteSeleccionado;
 
@@ -68,7 +71,7 @@ public class InstacompraController {
 	private TableColumn<Cliente, String> colCorreo;
 
 	@FXML
-	private TableView<?> tblListaProductos;
+	private TableView<Producto> tblListaProductos;
 
 	@FXML
 	private TextField txtTelefono;
@@ -113,7 +116,7 @@ public class InstacompraController {
 	private TextField txtCategoria;
 
 	@FXML
-	private TableColumn<?, ?> colCodigo;
+	private TableColumn<Producto, int> colCodigo;
 
 	@FXML
 	private TextField txtApellidos;
@@ -204,7 +207,7 @@ public class InstacompraController {
 
 	@FXML
 	void agregarProductoEvent(ActionEvent event) {
-
+		agregarProducto();
 	}
 
 	@FXML
@@ -244,11 +247,26 @@ public class InstacompraController {
 			mostrarInformacioncliente(clienteSeleccionado);  
 
 		});
+		
 
 	}
 
 
 	private void mostrarInformacioncliente(Cliente clienteSeleccionado) {
+
+		if (clienteSeleccionado != null) { 
+			txtNombres.setText(clienteSeleccionado.getNombres());
+			txtDocumento.setText(clienteSeleccionado.getDocumento());
+			txtApellidos.setText(clienteSeleccionado.getApellidos());
+			txtCorreo.setText(clienteSeleccionado.getCorreo());
+			txtTelefono.setText(clienteSeleccionado.getTelefono());
+			txtDepartamento.setText(clienteSeleccionado.getDepartamento());
+			txtCiudad.setText(clienteSeleccionado.getCiudad());
+		}
+
+	}
+	
+	private void mostrarInformacionProducto(Cliente clienteSeleccionado) {
 
 		if (clienteSeleccionado != null) { 
 			txtNombres.setText(clienteSeleccionado.getNombres());
@@ -269,6 +287,9 @@ public class InstacompraController {
 		this.aplicacion = aplicacion;
 		tblListaClientes.getItems().clear();
 		tblListaClientes.setItems(getListaClientesData());
+		
+		tblListaProductos.getItems().clear();
+		tblListaProductos.setItems(getListaProductosData());
 
 
 	}
@@ -277,6 +298,12 @@ public class InstacompraController {
 
 		listaClientesData.addAll(aplicacion.obtenerClientes());
 		return listaClientesData;
+	}
+	
+	public ObservableList<Producto> getListaProductosData(){
+
+		listaProductosData.addAll(aplicacion.obtenerProductos());
+		return listaProductosData;
 	}
 
 
@@ -291,6 +318,19 @@ public class InstacompraController {
 		txtCiudad.setText("Ingrese la ciudad");
 
 	}
+	
+	private void nuevoProducto() {
+
+		txtNombres.setText("Ingrese el nombre(s)");
+		txtDocumento.setText("Ingrese el documento");
+		txtApellidos.setText("Ingrese el apellido(s)");
+		txtCorreo.setText("Ingrese el correo");
+		txtTelefono.setText("Ingrese el telefono");
+		txtDepartamento.setText("Ingrese el departamento");
+		txtCiudad.setText("Ingrese la ciudad");
+
+	}
+
 
 	private void agregarCliente() {
 
@@ -326,8 +366,54 @@ public class InstacompraController {
 		//Almacenar datos
 
 	}
+	
+	private void agregarProducto() {
+
+		//Capturar datos de interfaz
+		String nombre = txtNombres.getText();
+		String documento = txtDocumento.getText();
+		String apellidos = txtApellidos.getText();
+		String correo = txtCorreo.getText();
+		String telefono = txtTelefono.getText();
+		String departamento = txtDepartamento.getText();
+		String ciudad = txtCiudad.getText();
+
+
+		if (datosValidos(nombre, documento, apellidos, correo, telefono, departamento, ciudad) == true) {
+
+			Cliente cliente = null;
+
+			cliente = aplicacion.crearCliente(nombre, documento, apellidos, correo, telefono, departamento, ciudad);
+
+			if (cliente != null) {
+
+				listaClientesData.add(cliente);
+				limpiarCamposTexto();
+				mostrarMensaje("Notificacion cliente", "Cliente registrado", "El cliente se ha registrado con exito", AlertType.INFORMATION);
+
+			}else {
+				mostrarMensaje("Notificacion cliente", "Cliente NO registrado", "El cliente ya se encuentra registrado", AlertType.ERROR);
+			}
+
+		}
+		//Validar datos
+
+		//Almacenar datos
+
+	}
 
 	private void limpiarCamposTexto() {
+
+		txtNombres.setText("");
+		txtDocumento.setText("");
+		txtApellidos.setText("");
+		txtCorreo.setText("");
+		txtTelefono.setText("");
+		txtDepartamento.setText("");
+		txtCiudad.setText("");
+	}
+	
+	private void limpiarCamposTextoPro() {
 
 		txtNombres.setText("");
 		txtDocumento.setText("");

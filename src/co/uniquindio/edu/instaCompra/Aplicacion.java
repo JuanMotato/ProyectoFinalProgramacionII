@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import co.uniquindio.edu.instaCompra.controller.InstacompraController;
+import co.uniquindio.edu.instaCompra.model.Categoria;
 import co.uniquindio.edu.instaCompra.model.Cliente;
+import co.uniquindio.edu.instaCompra.model.Producto;
 import co.uniquindio.edu.instaCompra.model.TiendaElectronica;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +60,7 @@ public class Aplicacion extends Application{
 		this.primaryStage = primaryStage;
 	}
 	
+	// Cliente CRUD
 	public ArrayList<Cliente>obtenerClientes(){
 		return tiendaElectronica.getListaCliente();
 	}
@@ -82,5 +85,31 @@ public class Aplicacion extends Application{
 		
 		return tiendaElectronica.actualizarCliente(documentoActual, nombre, apellidos, documento, ciudad, departamento, correo, telefono);
 	}
+	
+	//CRUD Producto
+	
+	public ArrayList<Producto>obtenerProductos(){
+		return tiendaElectronica.getListProductos();
+	}
+
+	public Producto crearProducto(int codigo, String sede, Categoria categoria, double precio, int stock, String nombre) {
+		
+		Producto producto = null;
+		producto = tiendaElectronica.crearProducto(codigo, sede, categoria, precio, stock, nombre);
+		
+		
+		return producto;
+	}
+
+//	public boolean eliminarProducto(String documento) {
+//		
+//		return tiendaElectronica.eliminarProducto(documento);
+//	}
+//
+//	public boolean actializarProducto(String documentoActual, String nombre, String apellidos, String documento,
+//			String ciudad, String departamento, String correo, String telefono) {
+//		
+//		return tiendaElectronica.actializarProducto(documentoActual, nombre, apellidos, documento, ciudad, departamento, correo, telefono);
+//	}
 
 }

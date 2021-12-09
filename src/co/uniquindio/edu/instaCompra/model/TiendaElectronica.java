@@ -86,11 +86,14 @@ public class TiendaElectronica {
 		Cliente cliente1 = new Cliente ("Circacia", "Quindio", "1515151", "Motato", "Juan","motato@correo", "31515451");
 		Cliente cliente2 = new Cliente ("Calarca", "Quindio", "515815", "Osorio", "Jhon","Jhon@correo", "14241724");
 
-
-
 		getListaCliente().add(cliente1);
 		getListaCliente().add(cliente2);
-
+		
+		Producto producto1 = new Producto(1214, "Armenia", Categoria.TECNOLOGIA, 50000, 4, "Mause");
+		Producto producto2 = new Producto(1215, "Pereira", Categoria.MOVIL, 600000, 4, "Tablet");
+		
+		getListProductos().add(producto1);
+		getListProductos().add(producto2);
 
 	}
 
@@ -124,6 +127,31 @@ public class TiendaElectronica {
 
 		
 	}
+	
+	public Producto crearProducto(int codigo, String sede,Categoria categoria, double precio, int stock, String nombre) {
+		
+		Producto producto = null;
+		
+		
+		producto = obtenerProducto(codigo);
+		
+		
+		if (producto == null) {
+		
+			producto = new Producto();
+			
+			//producto.setNombres(nombre);
+
+			
+			getListProductos().add(producto);
+			return producto;
+			
+		}else {
+			return null;
+		}
+
+		
+	}
 
 	private Cliente obtenerCliente(String documento) {
 		
@@ -131,6 +159,19 @@ public class TiendaElectronica {
 			
 			if (cliente.getDocumento().equals(documento)) {
 				return cliente;
+			}
+			
+		}
+		
+		return null;
+	}
+	
+	private Producto obtenerProducto(int codigo) {
+		
+		for (Producto producto : listProductos) {
+			
+			if (producto.getCodigo()==codigo) {
+				return producto;
 			}
 			
 		}
