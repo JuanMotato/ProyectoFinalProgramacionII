@@ -8,15 +8,15 @@
 
 <AnchorPane prefHeight="531.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.instaCompra.controller.InstacompraController">
    <children>
-      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="484.0" prefWidth="932.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="7.0" layoutY="7.0" prefHeight="612.0" prefWidth="932.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Crud clientes">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="932.0">
                      <children>
-                        <SplitPane layoutX="-5.0" layoutY="24.0" orientation="VERTICAL" prefHeight="425.0" prefWidth="932.0">
+                        <SplitPane layoutX="-5.0" layoutY="24.0" orientation="VERTICAL" prefHeight="557.0" prefWidth="932.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="880.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="931.0">
                                  <children>
                                     <Label layoutX="14.0" layoutY="14.0" text="Detalle cliente" />
                                     <Label layoutX="14.0" layoutY="59.0" text="Documento" />
@@ -32,7 +32,7 @@
                                     <Button fx:id="btnActualizarCliente" layoutX="565.0" layoutY="218.0" mnemonicParsing="false" onAction="#actualizarClienteEvent" prefHeight="25.0" prefWidth="100.0" text="Actualizar" />
                                     <TextField fx:id="txtApellidos" layoutX="116.0" layoutY="146.0" prefHeight="25.0" prefWidth="255.0" />
                                     <Label layoutX="14.0" layoutY="150.0" text="Direccion" />
-                                    <TableView fx:id="tblListaClientes" layoutX="9.0" layoutY="266.0" prefHeight="103.0" prefWidth="900.0">
+                                    <TableView fx:id="tblListaClientes" layoutY="266.0" prefHeight="228.0" prefWidth="900.0">
                                       <columns>
                                         <TableColumn fx:id="colDocumento" prefWidth="128.0" text="Documento" />
                                         <TableColumn fx:id="colNombre1" prefWidth="128.0" text="Nombres" />
@@ -44,7 +44,7 @@
                                       </columns>
                                     </TableView>
                                     <Label layoutX="10.0" layoutY="249.0" text="Lista de clientes" />
-                                    <Button fx:id="btnEliminarCliente" layoutX="411.0" layoutY="391.0" mnemonicParsing="false" onAction="#eliminarClienteEvent" prefHeight="25.0" prefWidth="100.0" text="Eliminar" />
+                                    <Button fx:id="btnEliminarCliente" layoutX="396.0" layoutY="503.0" mnemonicParsing="false" onAction="#eliminarClienteEvent" prefHeight="25.0" prefWidth="100.0" text="Eliminar" />
                                     <TextField fx:id="txtCiudad" layoutX="616.0" layoutY="124.0" prefHeight="25.0" prefWidth="255.0" />
                                     <TextField fx:id="txtDepartamento" layoutX="616.0" layoutY="159.0" prefHeight="25.0" prefWidth="255.0" />
                                     <Label layoutX="511.0" layoutY="163.0" text="Departamento" />
@@ -60,11 +60,11 @@
           </Tab>
           <Tab text="Crud productos">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="932.0">
                      <children>
-                        <SplitPane dividerPositions="0.47126436781609193" orientation="VERTICAL" prefHeight="437.0" prefWidth="922.0">
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="540.0" prefWidth="922.0">
                            <items>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="920.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="218.0" prefWidth="921.0">
                                  <children>
                                     <Label layoutX="14.0" layoutY="14.0" text="Detalle producto" />
                                     <Label layoutX="14.0" layoutY="37.0" text="Codigo" />
@@ -72,9 +72,9 @@
                                     <Label layoutX="529.0" layoutY="31.0" text="Categoria" />
                                     <TextField fx:id="txtCodigo" layoutX="69.0" layoutY="39.0" prefHeight="25.0" prefWidth="255.0" />
                                     <TextField fx:id="txtNombre" layoutX="68.0" layoutY="74.0" prefHeight="25.0" prefWidth="255.0" />
-                                    <Separator layoutX="162.0" layoutY="134.0" prefHeight="23.0" prefWidth="596.0" />
-                                    <Button fx:id="btnAgregarProducto" layoutX="410.0" layoutY="157.0" mnemonicParsing="false" onAction="#agregarProductoEvent" prefHeight="25.0" prefWidth="100.0" text="Agregar" />
-                                    <Button fx:id="btnActualizarProducto" layoutX="544.0" layoutY="157.0" mnemonicParsing="false" onAction="#actualizarProductoEvent" prefHeight="25.0" prefWidth="100.0" text="Actualizar" />
+                                    <Separator layoutX="162.0" layoutY="174.0" prefHeight="23.0" prefWidth="596.0" />
+                                    <Button fx:id="btnAgregarProducto" layoutX="410.0" layoutY="197.0" mnemonicParsing="false" onAction="#agregarProductoEvent" prefHeight="25.0" prefWidth="100.0" text="Agregar" />
+                                    <Button fx:id="btnActualizarProducto" layoutX="544.0" layoutY="197.0" mnemonicParsing="false" onAction="#actualizarProductoEvent" prefHeight="25.0" prefWidth="100.0" text="Actualizar" />
                                     <Label layoutX="14.0" layoutY="112.0" text="Sede" />
                                     <ComboBox fx:id="cbxSede" layoutX="69.0" layoutY="112.0" prefHeight="25.0" prefWidth="255.0" promptText="Seleccione la sede" />
                                     <TextField fx:id="txtPrecio" layoutX="583.0" layoutY="66.0" prefHeight="25.0" prefWidth="255.0" />
@@ -82,13 +82,13 @@
                                     <Label layoutX="529.0" layoutY="112.0" text="Stock" />
                                     <Label layoutX="529.0" layoutY="70.0" text="Precio" />
                                     <ComboBox fx:id="cbxCategoriaProducto" layoutX="583.0" layoutY="27.0" prefHeight="25.0" prefWidth="255.0" promptText="Seleccione la categoria" />
-                                    <Button fx:id="btnNuevoProducto" layoutX="274.0" layoutY="157.0" maxWidth="100.0" mnemonicParsing="false" onAction="#nuevoProductoEvent" prefWidth="100.0" text="Nuevo" />
+                                    <Button fx:id="btnNuevoProducto" layoutX="274.0" layoutY="197.0" maxWidth="100.0" mnemonicParsing="false" onAction="#nuevoProductoEvent" prefWidth="100.0" text="Nuevo" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="1072.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="920.0">
                                  <children>
                                     <Label layoutX="14.0" layoutY="14.0" text="Lista de productos" />
-                                    <TableView fx:id="tblListaProductos" layoutX="12.0" layoutY="39.0" prefHeight="143.0" prefWidth="900.0">
+                                    <TableView fx:id="tblListaProductos" layoutX="12.0" layoutY="39.0" prefHeight="168.0" prefWidth="900.0">
                                        <columns>
                                           <TableColumn fx:id="colCodigo" prefWidth="150.0" text="Codigo" />
                                           <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre" />
@@ -98,7 +98,7 @@
                                           <TableColumn fx:id="colStock" prefWidth="150.0" text="Stock" />
                                        </columns>
                                     </TableView>
-                                    <Button fx:id="btnEliminarProducto" layoutX="410.0" layoutY="188.0" mnemonicParsing="false" onAction="#eliminarProductoEvent" prefHeight="25.0" prefWidth="100.0" text="Eliminar" />
+                                    <Button fx:id="btnEliminarProducto" layoutX="410.0" layoutY="217.0" mnemonicParsing="false" onAction="#eliminarProductoEvent" prefHeight="25.0" prefWidth="100.0" text="Eliminar" />
                                  </children>
                               </AnchorPane>
                            </items>
