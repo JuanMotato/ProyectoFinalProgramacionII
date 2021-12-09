@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.uniquindio.edu.instaCompra.Aplicacion;
+import co.uniquindio.edu.instaCompra.model.Cliente;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,20 +14,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InstacompraController {
 	
+	
+	Aplicacion aplicacion;
+	ObservableList<Cliente> listaClientesData = FXCollections.observableArrayList();
+	
+	Cliente clienteSeleccionado;
+	
 	@FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TableColumn<?, ?> tblListaVenta;
 
     @FXML
-    private TableColumn<?, ?> colNombre;
+    private TableColumn<Cliente, String> colNombre;
 
     @FXML
     private TableColumn<?, ?> colCategoria;
@@ -45,7 +49,7 @@ public class InstacompraController {
     private TextField txtNombre;
 
     @FXML
-    private TableColumn<?, ?> colDocumento;
+    private TableColumn<Cliente, String> colDocumento;
 
     @FXML
     private TableColumn<?, ?> tblClientesMayoresCompras;
@@ -57,16 +61,13 @@ public class InstacompraController {
     private TableColumn<?, ?> colPrecio;
 
     @FXML
-    private TableColumn<?, ?> colCorreo;
+    private TableColumn<Cliente, String> colCorreo;
 
     @FXML
     private TableView<?> tblListaProductos;
 
     @FXML
     private TextField txtTelefono;
-
-    @FXML
-    private TableColumn<?, ?> tblSede;
 
     @FXML
     private TextField txtAdministracionRangoSede;
@@ -81,7 +82,13 @@ public class InstacompraController {
     private TextField txtNombres;
 
     @FXML
+    private TextField txtCiudad;
+
+    @FXML
     private Button btnAgregarCliente;
+
+    @FXML
+    private TextField txtDepartamento;
 
     @FXML
     private Button btnActualizarProducto;
@@ -90,7 +97,7 @@ public class InstacompraController {
     private TableView<?> tblVentas;
 
     @FXML
-    private TableView<?> tblListaClientes;
+    private TableView<Cliente> tblListaClientes;
 
     @FXML
     private Button btnRealizarVenta;
@@ -126,7 +133,7 @@ public class InstacompraController {
     private TextField txtVentaProducto;
 
     @FXML
-    private TableColumn<?, ?> colApellido;
+    private TableColumn<Cliente, String> colApellido;
 
     @FXML
     private TableColumn<?, ?> tblSedesProductosDisponibles;
@@ -135,13 +142,19 @@ public class InstacompraController {
     private Button btnEliminarProducto;
 
     @FXML
+    private TableColumn<Cliente, String> colCiudad;
+
+    @FXML
     private Button btnEliminarCliente;
+
+    @FXML
+    private TableColumn<Cliente, String> colDepartamento;
 
     @FXML
     private TextField txtAdministracionCodigoProducto;
 
     @FXML
-    private TableColumn<?, ?> colTelefono;
+    private TableColumn<Cliente, String> colTelefono;
 
     @FXML
     private Button btnBuscar;
@@ -179,7 +192,7 @@ public class InstacompraController {
     }
 
     @FXML
-    void eliminarProductoEvent(ActionEvent event) {
+    void eliminarProductoEvent(ActionEvent event) {     
 
     }
 
@@ -195,57 +208,95 @@ public class InstacompraController {
 
     @FXML
     void initialize() {
-        assert tblListaVenta != null : "fx:id=\"tblListaVenta\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colNombre != null : "fx:id=\"colNombre\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colCategoria != null : "fx:id=\"colCategoria\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtDocumento != null : "fx:id=\"txtDocumento\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtPrecio != null : "fx:id=\"txtPrecio\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colStock != null : "fx:id=\"colStock\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblProductoMasVendido != null : "fx:id=\"tblProductoMasVendido\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtNombre != null : "fx:id=\"txtNombre\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colDocumento != null : "fx:id=\"colDocumento\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblClientesMayoresCompras != null : "fx:id=\"tblClientesMayoresCompras\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnAgregarProducto != null : "fx:id=\"btnAgregarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colPrecio != null : "fx:id=\"colPrecio\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colCorreo != null : "fx:id=\"colCorreo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblListaProductos != null : "fx:id=\"tblListaProductos\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtTelefono != null : "fx:id=\"txtTelefono\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblSede != null : "fx:id=\"tblSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtAdministracionRangoSede != null : "fx:id=\"txtAdministracionRangoSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert cbxVentaSede != null : "fx:id=\"cbxVentaSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtAdministracionRangoProducto != null : "fx:id=\"txtAdministracionRangoProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtNombres != null : "fx:id=\"txtNombres\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnAgregarCliente != null : "fx:id=\"btnAgregarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnActualizarProducto != null : "fx:id=\"btnActualizarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblVentas != null : "fx:id=\"tblVentas\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblListaClientes != null : "fx:id=\"tblListaClientes\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnRealizarVenta != null : "fx:id=\"btnRealizarVenta\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtCategoria != null : "fx:id=\"txtCategoria\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colCodigo != null : "fx:id=\"colCodigo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtApellidos != null : "fx:id=\"txtApellidos\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtStock != null : "fx:id=\"txtStock\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnActualizarCliente != null : "fx:id=\"btnActualizarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert cbxSede != null : "fx:id=\"cbxSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtCodigo != null : "fx:id=\"txtCodigo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert cbxCliente != null : "fx:id=\"cbxCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtCorreo != null : "fx:id=\"txtCorreo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtVentaProducto != null : "fx:id=\"txtVentaProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colApellido != null : "fx:id=\"colApellido\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert tblSedesProductosDisponibles != null : "fx:id=\"tblSedesProductosDisponibles\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnEliminarProducto != null : "fx:id=\"btnEliminarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnEliminarCliente != null : "fx:id=\"btnEliminarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert txtAdministracionCodigoProducto != null : "fx:id=\"txtAdministracionCodigoProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colTelefono != null : "fx:id=\"colTelefono\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert btnBuscar != null : "fx:id=\"btnBuscar\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-        assert colSede != null : "fx:id=\"colSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
-
+        
+    	this.colDocumento.setCellValueFactory(new PropertyValueFactory<>("documento"));
+    	this.colNombre.setCellValueFactory(new PropertyValueFactory<>("nombres"));
+    	this.colApellido.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
+    	this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
+    	this.colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+    	this.colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
+    	this.colDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento")); 
+    	
+    	tblListaClientes.getSelectionModel ().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+    		
+    		clienteSeleccionado = newSelection;
+    		mostrarInformacioncliente(clienteSeleccionado);  
+    		
+    	});
+    
+    }
+    
+    
+    private void mostrarInformacioncliente(Cliente clienteSeleccionado) {
+    	//    	
+    	//    	if (CllienteSeleccionado != null) {
+    	//			
+    	//		}
+    	//    	
     }
 	
 	
 	
 	public void setAplicacion (Aplicacion aplicacion) {
+		
+		this.aplicacion = aplicacion;
+		tblListaClientes.getItems().clear();
+		tblListaClientes.setItems(getListaClientesData());
+		
 
 	}
+	
+	public ObservableList<Cliente> getListaClientesData(){
+		
+		listaClientesData.addAll(aplicacion.obtenerClientes());
+		return listaClientesData;
+	}
+	
+	
+//	assert tblListaVenta != null : "fx:id=\"tblListaVenta\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colNombre != null : "fx:id=\"colNombre\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colCategoria != null : "fx:id=\"colCategoria\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtDocumento != null : "fx:id=\"txtDocumento\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtPrecio != null : "fx:id=\"txtPrecio\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colStock != null : "fx:id=\"colStock\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblProductoMasVendido != null : "fx:id=\"tblProductoMasVendido\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtNombre != null : "fx:id=\"txtNombre\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colDocumento != null : "fx:id=\"colDocumento\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblClientesMayoresCompras != null : "fx:id=\"tblClientesMayoresCompras\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnAgregarProducto != null : "fx:id=\"btnAgregarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colPrecio != null : "fx:id=\"colPrecio\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colCorreo != null : "fx:id=\"colCorreo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblListaProductos != null : "fx:id=\"tblListaProductos\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtTelefono != null : "fx:id=\"txtTelefono\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblSede != null : "fx:id=\"tblSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtAdministracionRangoSede != null : "fx:id=\"txtAdministracionRangoSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert cbxVentaSede != null : "fx:id=\"cbxVentaSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtAdministracionRangoProducto != null : "fx:id=\"txtAdministracionRangoProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtNombres != null : "fx:id=\"txtNombres\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnAgregarCliente != null : "fx:id=\"btnAgregarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnActualizarProducto != null : "fx:id=\"btnActualizarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblVentas != null : "fx:id=\"tblVentas\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblListaClientes != null : "fx:id=\"tblListaClientes\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnRealizarVenta != null : "fx:id=\"btnRealizarVenta\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtCategoria != null : "fx:id=\"txtCategoria\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colCodigo != null : "fx:id=\"colCodigo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtApellidos != null : "fx:id=\"txtApellidos\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtStock != null : "fx:id=\"txtStock\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnActualizarCliente != null : "fx:id=\"btnActualizarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert cbxSede != null : "fx:id=\"cbxSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtCodigo != null : "fx:id=\"txtCodigo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert cbxCliente != null : "fx:id=\"cbxCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtCorreo != null : "fx:id=\"txtCorreo\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtVentaProducto != null : "fx:id=\"txtVentaProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colApellido != null : "fx:id=\"colApellido\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert tblSedesProductosDisponibles != null : "fx:id=\"tblSedesProductosDisponibles\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnEliminarProducto != null : "fx:id=\"btnEliminarProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnEliminarCliente != null : "fx:id=\"btnEliminarCliente\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert txtAdministracionCodigoProducto != null : "fx:id=\"txtAdministracionCodigoProducto\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colTelefono != null : "fx:id=\"colTelefono\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert btnBuscar != null : "fx:id=\"btnBuscar\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+//    assert colSede != null : "fx:id=\"colSede\" was not injected: check your FXML file 'InstacompraView.fxml'.";
+
 	
 
 }

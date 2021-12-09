@@ -22,27 +22,33 @@
                                     <Label layoutX="14.0" layoutY="59.0" text="Documento" />
                                     <Label layoutX="14.0" layoutY="103.0" text="Nombres" />
                                     <Label layoutX="531.0" layoutY="59.0" text="Correo" />
-                                    <Label layoutX="531.0" layoutY="103.0" text="Telefono" />
+                                    <Label layoutX="531.0" layoutY="95.0" text="Telefono" />
                                     <TextField fx:id="txtDocumento" layoutX="89.0" layoutY="55.0" prefHeight="25.0" prefWidth="255.0" />
                                     <TextField fx:id="txtNombres" layoutX="89.0" layoutY="99.0" prefHeight="25.0" prefWidth="255.0" />
-                                    <TextField fx:id="txtTelefono" layoutX="616.0" layoutY="99.0" prefHeight="25.0" prefWidth="255.0" />
+                                    <TextField fx:id="txtTelefono" layoutX="616.0" layoutY="91.0" prefHeight="25.0" prefWidth="255.0" />
                                     <TextField fx:id="txtCorreo" layoutX="616.0" layoutY="55.0" prefHeight="25.0" prefWidth="255.0" />
                                     <Separator layoutX="148.0" layoutY="189.0" prefHeight="23.0" prefWidth="596.0" />
                                     <Button fx:id="btnAgregarCliente" layoutX="337.0" layoutY="218.0" mnemonicParsing="false" onAction="#agregarCllienteEvent" prefHeight="25.0" prefWidth="100.0" text="Agregar" />
                                     <Button fx:id="btnActualizarCliente" layoutX="491.0" layoutY="218.0" mnemonicParsing="false" onAction="#actualizarClienteEvent" prefHeight="25.0" prefWidth="100.0" text="Actualizar" />
                                     <TextField fx:id="txtApellidos" layoutX="89.0" layoutY="146.0" prefHeight="25.0" prefWidth="255.0" />
                                     <Label layoutX="14.0" layoutY="150.0" text="Apellidos" />
-                                    <TableView fx:id="tblListaClientes" layoutX="9.0" layoutY="266.0" prefHeight="103.0" prefWidth="899.0">
+                                    <TableView fx:id="tblListaClientes" layoutX="9.0" layoutY="266.0" prefHeight="103.0" prefWidth="900.0">
                                       <columns>
-                                        <TableColumn fx:id="colDocumento" prefWidth="180.0" text="Documento" />
-                                        <TableColumn fx:id="colNombre" prefWidth="180.0" text="Nombres" />
-                                          <TableColumn fx:id="colApellido" prefWidth="180.0" text="Apellidos" />
-                                          <TableColumn fx:id="colCorreo" prefWidth="180.0" text="Correo" />
-                                          <TableColumn fx:id="colTelefono" prefWidth="180.0" text="Telefono" />
+                                        <TableColumn fx:id="colDocumento" prefWidth="128.0" text="Documento" />
+                                        <TableColumn fx:id="colNombre" prefWidth="128.0" text="Nombres" />
+                                          <TableColumn fx:id="colApellido" prefWidth="128.0" text="Apellidos" />
+                                          <TableColumn fx:id="colCorreo" prefWidth="128.0" text="Correo" />
+                                          <TableColumn fx:id="colTelefono" prefWidth="128.0" text="Telefono" />
+                                          <TableColumn fx:id="colDepartamento" prefWidth="128.0" text="Departamento" />
+                                          <TableColumn fx:id="colCiudad" prefWidth="128.0" text="Ciudad" />
                                       </columns>
                                     </TableView>
                                     <Label layoutX="10.0" layoutY="249.0" text="Lista de clientes" />
                                     <Button fx:id="btnEliminarCliente" layoutX="411.0" layoutY="391.0" mnemonicParsing="false" onAction="#eliminarClienteEvent" prefHeight="25.0" prefWidth="100.0" text="Eliminar" />
+                                    <TextField fx:id="txtCiudad" layoutX="616.0" layoutY="124.0" prefHeight="25.0" prefWidth="255.0" />
+                                    <TextField fx:id="txtDepartamento" layoutX="616.0" layoutY="159.0" prefHeight="25.0" prefWidth="255.0" />
+                                    <Label layoutX="531.0" layoutY="163.0" text="Departamento" />
+                                    <Label layoutX="531.0" layoutY="128.0" text="Ciudad" />
                                  </children>
                               </AnchorPane>
                           </items>
