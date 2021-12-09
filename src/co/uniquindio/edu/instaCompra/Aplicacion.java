@@ -28,8 +28,8 @@ public class Aplicacion extends Application{
 			
 			AnchorPane rootLayout = (AnchorPane)loader.load();
 			
-//			InstacompraController instacompraController = loader.getController();
-//			instacompraController.setAplicacion(this);
+			InstacompraController instacompraController = loader.getController();
+			instacompraController.setAplicacion(this);
 			
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
