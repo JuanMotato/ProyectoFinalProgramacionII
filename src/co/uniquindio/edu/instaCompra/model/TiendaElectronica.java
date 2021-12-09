@@ -253,9 +253,9 @@ public class TiendaElectronica {
 		}
 	}
 	
-	public boolean validarProducto(String id) {
+	public boolean validarProducto(int id) {
 
-		String idProduct;
+		int idProduct;
 		boolean existe=false;
 
 		Producto productoAux;
@@ -265,7 +265,7 @@ public class TiendaElectronica {
 			productoAux=listProductos.get(i);
 			idProduct=productoAux.getCodigo();
 
-			if(idProduct.equals(id)){
+			if(idProduct==id){
 
 				existe=true;
 
@@ -275,10 +275,10 @@ public class TiendaElectronica {
 		return existe;
 	}
 	
-	public Producto buscarProducto(String idBuscar) {
+	public Producto buscarProducto(int codigoBuscar) {
 
 		Producto produAux = null;
-		String idProductoB = "";
+		int  idProductoB = 0;
 
 
 		for (int i=0; i<listProductos.size(); i++){
@@ -288,7 +288,7 @@ public class TiendaElectronica {
 			if(produAux!=null){
 
 				idProductoB=produAux.getCodigo();
-				if(idProductoB.equals(idBuscar)){
+				if(idProductoB==codigoBuscar){
 					break;
 				}
 			}

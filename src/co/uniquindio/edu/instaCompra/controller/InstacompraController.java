@@ -688,12 +688,14 @@ public class InstacompraController {
 	
 	private void buscarId() {
 		
+		int codigoBuscar = Integer.parseInt(txtCodigo.getText());
+		
 		 String idBuscar = txtAdministracionCodigoProducto.getText();
 		 //boolean existeId = false;
 		 
 		Producto producto = null;
 		
-		producto=aplicacion.verificarExistenciaProducto(idBuscar);
+		producto=aplicacion.verificarExistenciaProducto(codigoBuscar);
 		 
 		 if (producto!= null){
 			 

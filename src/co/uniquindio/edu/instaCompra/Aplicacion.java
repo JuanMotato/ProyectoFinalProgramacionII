@@ -114,7 +114,7 @@ public class Aplicacion extends Application{
 
 	}
 
-	public Producto verificarExistenciaProducto(String idBuscar) {
+	public Producto verificarExistenciaProducto(int idBuscar) {
 
 		boolean existeProducto = false;
 		Producto producto = null;
