@@ -94,4 +94,84 @@ public class TiendaElectronica {
 
 	}
 
+	public Cliente crearCliente(String nombre, String documento, String apellidos, String correo, String telefono,
+			String departamento, String ciudad) {
+		
+		Cliente cliente = null;
+		
+		
+		cliente = obtenerCliente(documento);
+		
+		
+		if (cliente == null) {
+		
+			cliente = new Cliente();
+			
+			cliente.setNombres(nombre);
+			cliente.setDocumento(documento);
+			cliente.setApellidos(apellidos);
+			cliente.setCorreo(correo);
+			cliente.setTelefono(telefono);
+			cliente.setDepartamento(departamento);
+			cliente.setCiudad(ciudad);
+			
+			getListaCliente().add(cliente);
+			return cliente;
+			
+		}else {
+			return null;
+		}
+
+		
+	}
+
+	private Cliente obtenerCliente(String documento) {
+		
+		for (Cliente cliente : listaCliente) {
+			
+			if (cliente.getDocumento().equals(documento)) {
+				return cliente;
+			}
+			
+		}
+		
+		return null;
+	}
+
+	public  boolean eliminarCliente(String documento) {
+		
+		Cliente cliente = null;
+		cliente = obtenerCliente(documento);
+		
+		if (cliente  != null) {
+			getListaCliente().remove(cliente);
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	//metodo actuallizar cliente
+	public boolean actualizarCliente(String documentoActual, String nombre, String apellidos, String documento, String ciudad, String departamento, String correo, String telefono) {
+		
+		Cliente cliente = null;
+		cliente = obtenerCliente(documentoActual);
+		
+		if (cliente  != null) {
+			
+			cliente.setNombres(nombre);
+			cliente.setDocumento(documento);
+			cliente.setApellidos(apellidos);
+			cliente.setCorreo(correo);
+			cliente.setTelefono(telefono);
+			cliente.setDepartamento(departamento);
+			cliente.setCiudad(ciudad);
+			
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

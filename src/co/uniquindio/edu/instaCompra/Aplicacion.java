@@ -62,4 +62,25 @@ public class Aplicacion extends Application{
 		return tiendaElectronica.getListaCliente();
 	}
 
+	public Cliente crearCliente(String nombre, String documento, String apellidos, String correo, String telefono,
+			String departamento, String ciudad) {
+		
+		Cliente cliente = null;
+		cliente = tiendaElectronica.crearCliente(nombre, documento, apellidos, correo, telefono, departamento, ciudad);
+		
+		
+		return cliente;
+	}
+
+	public boolean eliminarCliente(String documento) {
+		
+		return tiendaElectronica.eliminarCliente(documento);
+	}
+
+	public boolean actializarCliente(String documentoActual, String nombre, String apellidos, String documento,
+			String ciudad, String departamento, String correo, String telefono) {
+		
+		return tiendaElectronica.actualizarCliente(documentoActual, nombre, apellidos, documento, ciudad, departamento, correo, telefono);
+	}
+
 }
