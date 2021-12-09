@@ -1,9 +1,7 @@
 package co.uniquindio.edu.instaCompra.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
+import java.util.Optional;
 import co.uniquindio.edu.instaCompra.Aplicacion;
 import co.uniquindio.edu.instaCompra.model.Categoria;
 import co.uniquindio.edu.instaCompra.model.Cliente;
@@ -706,14 +704,27 @@ public class InstacompraController {
 	}
 
 	private void actualizarCliente() {
+		
+		//Capturar datos de interfaz
+		String nombre = "";
+		int documento = 0;
+		String direccion = "";
+		String correo = "";
+		String fechaNacimiento = "";
+		String departamento = "";
+		String ciudad = "";
 
-		String nombre = txtNombres.getText();
-		int  documento = Integer.parseInt(txtDocumento.getText());
-		String direccion = txtDireccion.getText();
-		String correo = txtCorreo.getText();
-		String fechaNacimiento = txtFechaNacimiento.getText();
-		String departamento = txtDepartamento.getText();
-		String ciudad = txtCiudad.getText();
+		try { 
+			nombre = txtNombres.getText();
+			documento = Integer.parseInt(txtDocumento.getText());
+			direccion = txtDireccion.getText();
+			correo = txtCorreo.getText();
+			fechaNacimiento = txtFechaNacimiento.getText();
+			departamento = txtDepartamento.getText();
+			ciudad = txtCiudad.getText();
+		} catch (NumberFormatException e) {
+			// ... } if (s != null) { ... }
+		}
 
 		boolean banderaClienteActuallizado = false;
 
@@ -746,13 +757,23 @@ public class InstacompraController {
 
 
 	private void actualizarProducto() {
-
-		int codigo = Integer.parseInt(txtCodigo.getText());
-		String sede = cbxSede.getValue();
-		Categoria categoria = (Categoria) cbxCategoriaProducto.getValue();
-		Double precio = Double.parseDouble(txtPrecio.getText());
-		int stock = Integer.parseInt(txtStock.getText());
-		String nombre = txtNombre.getText();
+		
+		int codigo = 0;
+		String sede = "";
+		Categoria categoria = null ;
+		Double precio = 0.0;
+		int stock = 0;
+		String nombre = "";
+		try { 
+			 codigo = Integer.parseInt(txtCodigo.getText());
+			 sede = cbxSede.getValue();
+			 categoria = (Categoria) cbxCategoriaProducto.getValue();
+			 precio = Double.parseDouble(txtPrecio.getText());
+			 stock = Integer.parseInt(txtStock.getText());
+			 nombre = txtNombre.getText();
+			} catch (NumberFormatException e) {
+				// ... } if (s != null) { ... }
+		}
 
 		boolean banderaProductoActuallizado = false;
 
