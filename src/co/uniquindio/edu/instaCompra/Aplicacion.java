@@ -121,7 +121,7 @@ public class Aplicacion extends Application{
 
 		existeProducto= tiendaElectronica.validarProducto(idBuscar);
 
-		if(existeProducto==true){
+		if(existeProducto){
 
 			producto=tiendaElectronica.buscarProducto(idBuscar);
 

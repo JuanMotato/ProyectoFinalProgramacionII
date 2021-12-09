@@ -83,8 +83,8 @@ public class TiendaElectronica {
 		 * Datos inicializados de Cliente
 		 * */
 
-		Cliente cliente1 = new Cliente ("Circacia", "Quindio", "1515151", "Motato", "Juan","motato@correo", "31515451");
-		Cliente cliente2 = new Cliente ("Calarca", "Quindio", "515815", "Osorio", "Jhon","Jhon@correo", "14241724");
+		Cliente cliente1 = new Cliente ("Circacia", "Quindio", "1515151", "E Porvenir", "Juan","motato@correo", "19-01-2001");
+		Cliente cliente2 = new Cliente ("Calarca", "Quindio", "515815", "San Jose", "Jhon","Jhon@correo", "06-10-2000");
 
 		getListaCliente().add(cliente1);
 		getListaCliente().add(cliente2);
@@ -255,7 +255,7 @@ public class TiendaElectronica {
 	
 	public boolean validarProducto(int id) {
 
-		int idProduct;
+		int idProduct=0;
 		boolean existe=false;
 
 		Producto productoAux;

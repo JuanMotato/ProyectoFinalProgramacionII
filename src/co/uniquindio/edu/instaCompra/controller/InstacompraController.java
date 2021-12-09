@@ -29,6 +29,8 @@ public class InstacompraController {
 	ObservableList<Cliente> listaClientesData = FXCollections.observableArrayList();
 	
 	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
+	
+	ObservableList<Producto> listaProductosDataAdministracion = FXCollections.observableArrayList();
 
 	Cliente clienteSeleccionado;
 	Producto productoSeleccionado;
@@ -312,6 +314,13 @@ public class InstacompraController {
 		cbxCategoriaProducto.getItems().addAll(Categoria.TECNOLOGIA, Categoria.MOVIL, Categoria.TECNOLOGIA_COMPUTACIONAL, Categoria.MUSICA, Categoria.HOGAR, Categoria.EMRESARIALES);
 		cbxSede.getItems().addAll("Armenia","Bogota","Pereira");
 		
+		//datos tabla producto
+		this.colCodigoProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+		this.colNombreProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+		this.colSedeProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("sede"));
+		this.colCategoriaProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		this.colPrecioProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("precio"));
+		this.colStockProductoAdministracion.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
 	}
 
@@ -373,22 +382,22 @@ public class InstacompraController {
 
 	private void nuevoCliente() {
 
-		txtNombres.setText("Ingrese el nombre(s)");
-		txtDocumento.setText("Ingrese el documento");
-		txtApellidos.setText("Ingrese el apellido(s)");
-		txtCorreo.setText("Ingrese el correo");
-		txtTelefono.setText("Ingrese el telefono");
-		txtDepartamento.setText("Ingrese el departamento");
-		txtCiudad.setText("Ingrese la ciudad");
+		txtNombres.setPromptText("Ingrese el nombre(s)");
+		txtDocumento.setPromptText("Ingrese el documento");
+		txtApellidos.setPromptText("Ingrese el apellido(s)");
+		txtCorreo.setPromptText("Ingrese el correo");
+		txtTelefono.setPromptText("Ingrese el telefono");
+		txtDepartamento.setPromptText("Ingrese el departamento");
+		txtCiudad.setPromptText("Ingrese la ciudad");
 
 	}
 	
 	private void nuevoProducto() {
 
-		txtCodigo.setText("Ingrese el nuevo codigo"); 
-		txtNombre.setText("Ingrese el nuevo nombre");
-		txtPrecio.setText("0");
-		txtStock.setText("0");
+		txtCodigo.setPromptText("Ingrese el nuevo codigo"); 
+		txtNombre.setPromptText("Ingrese el nuevo nombre");
+		txtPrecio.setPromptText("0.0");
+		txtStock.setPromptText("0");
 		
 
 	}
@@ -711,6 +720,7 @@ public class InstacompraController {
 	
 	private void buscarCodigoProducto() {
 		
+		tblBusquedaProducto.getItems().clear();
 		int codigoBuscar = Integer.parseInt(txtAdministracionCodigoProducto.getText());
 		 
 		Producto producto = null;
@@ -719,8 +729,8 @@ public class InstacompraController {
 		 
 		 if (producto!= null){
 			 
-			 listaProductosData.add(producto);
-			tblBusquedaProducto.setItems(listaProductosData);	 	 
+			 listaProductosDataAdministracion.add(producto);
+			tblBusquedaProducto.setItems(listaProductosDataAdministracion);	 	 
 		 } 
 			 
 		 }
